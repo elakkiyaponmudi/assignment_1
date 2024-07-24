@@ -42,9 +42,4 @@ The solution can be applied to various business scenarios including:
 - **Objective**: Retrieve and filter data based on user inputs.
 - **Implementation**: Use Streamlit to allow users to interact with and filter the data through the application.
 
-## Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/redbus-data-scraping.git
-   cd redbus-data-scraping
