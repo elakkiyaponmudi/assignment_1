@@ -1,45 +1,79 @@
-# assignment_1
-redbus data webscraping
+# 🚌 Red Bus Data Scraper and Streamlit Application
 
-# Redbus Data Scraping and Filtering with Streamlit Application
+This project involves scraping bus route data from the RSRTC Redbus website using Selenium and presenting it in a Streamlit application with various filtering options. The data is stored in a MySQL database.
 
-## Overview
-The "Redbus Data Scraping and Filtering with Streamlit Application" aims to revolutionize the transportation industry by providing a comprehensive solution for collecting, analyzing, and visualizing bus travel data. By utilizing Selenium for web scraping, this project automates the extraction of detailed information from Redbus, including bus routes, schedules, prices, and seat availability. By streamlining data collection and providing powerful tools for data-driven decision-making, this project can significantly improve operational efficiency and strategic planning in the transportation industry.
+## Project Structure
 
-## Business Use Cases
-The solution can be applied to various business scenarios including:
+- **scraper.py**: Contains the Selenium web scraping script.
+- **streamlit_app.py**: Contains the Streamlit application script.
+- **README.md**: Project documentation.
 
-1. **Travel Aggregators**: Providing real-time bus schedules and seat availability for customers.
-2. **Market Analysis**: Analyzing travel patterns and preferences for market research.
-3. **Customer Service**: Enhancing user experience by offering customized travel options based on data insights.
-4. **Competitor Analysis**: Comparing pricing and service levels with competitors.
+## Getting Started
 
-## Approach
+### Prerequisites
 
-### Data Scraping
-- **Tool**: Selenium
-- **Objective**: Automate the extraction of Redbus data including routes, schedules, prices, and seat availability.
+- Python 3.8 or later
+- MySQL database
+- Chrome browser
+- ChromeDriver
 
-### Data Storage
-- **Database**: SQL (e.g., MySQL)
-- **Objective**: Store the scraped data for further analysis and visualization.
+### Installation
 
-### Streamlit Application
-- **Framework**: Streamlit
-- **Objective**: Develop a user-friendly application to display and filter the scraped data.
-- **Features**:
-  - Filter by bus name 
-  - Filter by bus type
-  - Filter by route
-  - Filter by departure time
-  - Filter by starting time
-  - Filter by price range
-  - Filter by star rating
-  - Filter by seat availability
 
-### Data Analysis/Filtering using Streamlit
-- **Tool**: SQL Queries
-- **Objective**: Retrieve and filter data based on user inputs.
-- **Implementation**: Use Streamlit to allow users to interact with and filter the data through the application.
+1. Install the required Python packages:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+2. Setup MySQL database:
+
+    - Create a MySQL database named `redbus`.
+    - Create a table `bus_routes` with appropriate columns to store the scraped data.
+
+3. Update `scraper.py` and `streamlit_app.py` with your MySQL connection details.
+
+### Running the Scraper
+
+1. Run the scraper to fetch bus route data:
+    ```sh
+    python scraper.py
+    ```
+
+2. The scraper will save the bus route details in `bus_details.csv` and load the data into the MySQL database.
+
+### Running the Streamlit Application
+
+1. Run the Streamlit application:
+    ```sh
+    streamlit run streamlit_app.py
+    ```
+
+2. Open your browser and navigate to the provided URL to use the application.
+
+## Streamlit Application Features
+
+- **Select Route Name**: Choose a route to view the bus details.
+- **Filter Options**:
+    - Bus Name
+    - Departure Time
+    - Duration
+    - Price
+    - Bus Type
+    - Star Rating
+    - Seat Availability
+
+## Files
+
+- **scraper.py**: Contains the script to scrape bus route data from the RSRTC Redbus website using Selenium.
+- **streamlit_app.py**: Contains the Streamlit application script to display and filter the bus route data.
+- **requirements.txt**: Lists the dependencies required for the project.
+- **rsrtc_bus_details.csv**: CSV file containing the scraped bus route data.
+
+## Notes
+
+- Ensure you have ChromeDriver installed and its path is correctly set.
+- Update MySQL connection details as required.
+- The scraping script uses a delay (`time.sleep()`) to ensure elements load properly.
+
 
 
