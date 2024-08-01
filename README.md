@@ -66,8 +66,7 @@ This project involves scraping bus route data from the RSRTC Redbus website usin
 
 - **scraper.py**: Contains the script to scrape bus route data from the RSRTC Redbus website using Selenium.
 - **streamlit_app.py**: Contains the Streamlit application script to display and filter the bus route data.
-- **requirements.txt**: Lists the dependencies required for the project.
-- **rsrtc_bus_details.csv**: CSV file containing the scraped bus route data.
+- **bus_details.csv**: CSV file containing the scraped bus route data.
 
 ## Notes
 
