@@ -1,4 +1,4 @@
-# 🚌 Red Bus Data Scraper and Streamlit Application
+# 🚌 Red Bus Data Scrapping and Streamlit Application
 
 This project involves scraping bus route data from the RSRTC Redbus website using Selenium and presenting it in a Streamlit application with various filtering options. The data is stored in a MySQL database.
 
