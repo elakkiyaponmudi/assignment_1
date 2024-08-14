@@ -5,7 +5,7 @@ This project involves scraping bus route data from the Redbus website using Sele
 ## Project Structure
 
 - **scraper.py**: Contains the Selenium web scraping script.
-- **streamlit_app.py**: Contains the Streamlit application script.
+- **streamlit_main.py**: Contains the Streamlit application script.
 - **README.md**: Project documentation.
 
 ## Getting Started
@@ -30,7 +30,7 @@ This project involves scraping bus route data from the Redbus website using Sele
     - Create a MySQL database named `redbus`.
     - Create a table `bus_routes` with appropriate columns to store the scraped data.
 
-3. Update `scraper.py` and `streamlit_app.py` with your MySQL connection details.
+3. Update `scraper.py` and `streamlit_main.py` with your MySQL connection details.
 
 ### Running the Scraper
 
@@ -54,10 +54,11 @@ This project involves scraping bus route data from the Redbus website using Sele
 
 - **Select Route Name**: Choose a route to view the bus details.
 - **Filter Options**:
-    - Bus Name
-    - Departure Time
-    - Duration
-    - Price
+    - Route Name
+    - Min Duration
+    - Max Duration
+    - Min Price
+    - Max Price
     - Bus Type
     - Star Rating
     - Seat Availability
@@ -65,10 +66,10 @@ This project involves scraping bus route data from the Redbus website using Sele
 ## Files
 
 - **scraper.py**: Contains the script to scrape bus route data from the RSRTC Redbus website using Selenium.
-- **streamlit_app.py**: Contains the Streamlit application script to display and filter the bus route data.
+- **streamlit_main.py**: Contains the Streamlit application script to display and filter the bus route data.
 - **bus_details.csv**: CSV file containing the scraped bus route data.
 
-## Notes
+
 
 - Ensure you have ChromeDriver installed and its path is correctly set.
 - Update MySQL connection details as required.
