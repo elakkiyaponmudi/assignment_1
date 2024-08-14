@@ -5,7 +5,7 @@ from sqlalchemy import create_engine, text
 # Create the engine to connect to your database
 engine = create_engine('mysql+pymysql://root:#ponmudi22@localhost/redbus')
 
-def fetch_filtered_data(route_name, min_duration=None, max_duration=None, min_price=None, max_price=None, bus_type=None, star_rating=None, seat_availability=None):
+def fetch_filtered_data(route_name, min_duration=None, max_duration=None, min_price=None, max_price=None, bus_type=None, min_star_rating=None, max_star_rating=None, min_seat_availability=None, max_seat_availability=None):
     """
     Fetch filtered bus data based on the provided filters.
     """
@@ -26,13 +26,15 @@ def fetch_filtered_data(route_name, min_duration=None, max_duration=None, min_pr
         query += " AND Bus_Type = :bus_type"
         params["bus_type"] = bus_type
 
-    if star_rating:
-        query += " AND Star_Rating = :star_rating"
-        params["star_rating"] = star_rating
+    if min_star_rating is not None and max_star_rating is not None:
+        query += " AND Star_Rating BETWEEN :min_star_rating AND :max_star_rating"
+        params["min_star_rating"] = min_star_rating
+        params["max_star_rating"] = max_star_rating
 
-    if seat_availability:
-        query += " AND Seat_Availability = :seat_availability"
-        params["seat_availability"] = seat_availability
+    if min_seat_availability is not None and max_seat_availability is not None:
+        query += " AND Seat_Availability BETWEEN :min_seat_availability AND :max_seat_availability"
+        params["min_seat_availability"] = min_seat_availability
+        params["max_seat_availability"] = max_seat_availability
 
     with engine.connect() as connection:
         result = connection.execute(text(query), params)
@@ -68,16 +70,20 @@ def display_sidebar_filters(route_name):
     """
     durations = fetch_distinct_values(route_name, "Duration")
     bus_types = fetch_distinct_values(route_name, "Bus_Type")
-    star_ratings = fetch_distinct_values(route_name, "Star_Rating")
-    seat_availabilities = fetch_distinct_values(route_name, "Seat_Availability")
-
+    
     selected_bus_type = st.sidebar.selectbox('Filter by Bus Type', [None] + bus_types)
     min_duration = st.sidebar.selectbox('Min Duration', [None] + sorted(durations))
     max_duration = st.sidebar.selectbox('Max Duration', [None] + sorted(durations))
     min_price = st.sidebar.number_input('Min Price', min_value=0, step=1)
     max_price = st.sidebar.number_input('Max Price', min_value=0, step=1)
-    selected_star_rating = st.sidebar.selectbox('Filter by Star Rating', [None] + star_ratings)
-    selected_seat_availability = st.sidebar.selectbox('Filter by Seat Availability', [None] + seat_availabilities)
+
+    # Star Rating Sliders
+    min_star_rating = st.sidebar.slider('Min Star Rating', min_value=1, max_value=5, step=1, value=1)
+    max_star_rating = st.sidebar.slider('Max Star Rating', min_value=min_star_rating, max_value=5, step=1, value=5)
+
+    # Seat Availability Sliders
+    min_seat_availability = st.sidebar.slider('Min Seat Availability (%)', min_value=0, max_value=100, step=1, value=0)
+    max_seat_availability = st.sidebar.slider('Max Seat Availability (%)', min_value=min_seat_availability, max_value=100, step=1, value=100)
 
     filters = {
         "bus_type": selected_bus_type,
@@ -85,8 +91,10 @@ def display_sidebar_filters(route_name):
         "max_duration": max_duration,
         "min_price": min_price if min_price > 0 else None,
         "max_price": max_price if max_price > 0 else None,
-        "star_rating": selected_star_rating,
-        "seat_availability": selected_seat_availability
+        "min_star_rating": min_star_rating,
+        "max_star_rating": max_star_rating,
+        "min_seat_availability": min_seat_availability,
+        "max_seat_availability": max_seat_availability
     }
 
     return filters
@@ -108,3 +116,4 @@ if __name__ == "__main__":
     main()
 
 
+  
