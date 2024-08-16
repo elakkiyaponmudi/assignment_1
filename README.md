@@ -54,6 +54,7 @@ This project involves scraping bus route data from the Redbus website using Sele
 
 - **Select Route Name**: Choose a route to view the bus details.
 - **Filter Options**:
+    - State Name     
     - Route Name
     - Min Duration
     - Max Duration
