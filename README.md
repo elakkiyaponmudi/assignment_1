@@ -45,7 +45,7 @@ This project involves scraping bus route data from the Redbus website using Sele
 
 1. Run the Streamlit application:
     ```sh
-    streamlit run streamlit_app.py
+    streamlit run streamlit_main.py
     ```
 
 2. Open your browser and navigate to the provided URL to use the application.
